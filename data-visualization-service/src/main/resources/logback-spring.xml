@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="APP_NAME" value="demo-provider"/>
+    <contextName>${APP_NAME}</contextName>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS,GMT+8}]%-5level %logger{72}[%L] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.yongche.service" level="TRACE"/>
+
+
+    <!-- Spring -->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.boot.SpringApplication" level="INFO"/>
+    <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="OFF"/>
+
+    <!-- Tomcat容器 -->
+    <logger name="org.apache.catalina" level="INFO"/>
+
+    <!-- 其他 (暂无) -->
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+
+</configuration>

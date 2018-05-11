@@ -1,0 +1,65 @@
+
+dubbo:
+  application:
+    name: data-visualization-service-provider
+    organization: yongche
+    owner: bigdata
+  registry:
+    protocol: zookeeper
+    address: 172.17.1.181:2181
+  annotation:
+    package: com.yongche.service
+  protocol:
+    name: dubbo
+    port: 20880
+
+
+druid:
+    url: jdbc:impala://172.17.10.62:21050/;auth=noSasl
+    driver-class: com.cloudera.impala.jdbc41.Driver
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: SELECT 1
+    test-While-Idle: true
+    test-on-return: false
+    pool-prepared-statements: false
+    max-pool-prepared-statement-per-connection-size: 20
+    filters: stat,wall,log4j,config
+    connection-properties: druid.stat.memvnrgeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# CORE
+#-----------------------------------------------------------------------------------------------------------------------
+spring:
+  main:
+    banner-mode: log
+  jackson:
+    locale: zh_CN
+    time-zone: GMT+8
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    joda-date-time-format: ${spring.jackson.date-format}
+    serialization:
+      indent-output: true
+      fail-on-self-references: true
+      write-dates-as-timestamps: false
+      write-null-map-values: true
+      write-empty-json-arrays: true
+      write-single-elem-arrays-unwrapped: false
+      write-enums-using-to-string: true
+    deserialization:
+      fail-on-unknown-properties: false
+mybatis:
+    type-aliases-package: com.yongche.domain
+    mapper-locations: classpath*:mapper/**/*.xml
+#-----------------------------------------------------------------------------------------------------------------------
+# SERVER
+#-----------------------------------------------------------------------------------------------------------------------
+server:
+  port: 8888

@@ -1,0 +1,27 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# CORE
+#-----------------------------------------------------------------------------------------------------------------------
+spring:
+  main:
+    banner-mode: log
+  jackson:
+    locale: zh_CN
+    time-zone: GMT+8
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    joda-date-time-format: ${spring.jackson.date-format}
+    serialization:
+      indent-output: true
+      fail-on-self-references: true
+      write-dates-as-timestamps: false
+      write-null-map-values: true
+      write-empty-json-arrays: true
+      write-single-elem-arrays-unwrapped: false
+      write-enums-using-to-string: true
+    deserialization:
+      fail-on-unknown-properties: false
+
+#-----------------------------------------------------------------------------------------------------------------------
+# SERVER
+#-----------------------------------------------------------------------------------------------------------------------
+server:
+  port: 9999
